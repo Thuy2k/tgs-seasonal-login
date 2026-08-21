@@ -39,14 +39,27 @@ class TGS_Seasonal_Login
      */
     private static function seasons()
     {
+        /*
+         * ⚠ LẤY KHOẢNG ĐẦU TIÊN KHỚP, KHÔNG PHẢI KHOẢNG KHỚP NHẤT.
+         *
+         * Hai mùa chồng ngày lên nhau thì mùa đứng sau không bao giờ chạy, mà
+         * chẳng có gì báo lỗi. Đã dính đúng lỗi này: mốc chạy thử Trung Thu
+         * 01–31/8 nuốt trọn mùa Quốc Khánh.
+         *
+         * Lịch này phải TRÙNG với tgs_pos_splash_seasons() bên plugin tgs_pos —
+         * màn đăng nhập và màn chờ nối tiếp nhau trong cùng một lần vào ca, hai
+         * bên lệch mùa thì nhân viên đăng nhập thấy cờ đỏ rồi chờ thấy đèn lồng.
+         */
         return [
             // [ từ ngày, đến ngày, giao diện ]
-            ['2025-09-20', '2025-10-08', 'trung_thu'],
-            ['2026-09-10', '2026-09-28', 'trung_thu'],
-            ['2027-08-30', '2027-09-17', 'trung_thu'],
 
-            // Mốc chạy thử mùa 2026 — xoá đi khi không cần nữa
-            ['2026-08-01', '2026-08-31', 'trung_thu'],
+            // Quốc Khánh: 20/8 → 3/9, rồi nối thẳng sang Trung Thu
+            ['2026-08-20', '2026-09-03', 'quoc_khanh'],
+            ['2027-08-20', '2027-09-03', 'quoc_khanh'],
+
+            ['2025-09-20', '2025-10-08', 'trung_thu'],
+            ['2026-09-04', '2026-09-28', 'trung_thu'],
+            ['2027-09-04', '2027-09-17', 'trung_thu'],
         ];
     }
 
@@ -59,6 +72,14 @@ class TGS_Seasonal_Login
                 'file'       => '',
                 'greeting'   => '',
                 'sub'        => '',
+            ],
+
+            'quoc_khanh' => [
+                'label'      => 'Quốc Khánh 2/9',
+                'body_class' => 'giao_dien_quoc_khanh',
+                'file'       => 'theme-quoc-khanh.php',
+                'greeting'   => 'Chào mừng Quốc Khánh 2/9 — Tự hào là người Việt Nam! 🇻🇳',
+                'sub'        => 'Đăng nhập để bắt đầu ngày làm việc',
             ],
 
             'trung_thu' => [

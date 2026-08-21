@@ -35,6 +35,7 @@ define('TGS_SEASONAL_LOGIN_URL', plugin_dir_url(__FILE__));
  *
  *   'mac_dinh'  → trang đăng nhập WordPress nguyên bản, không đụng gì
  *   'trung_thu' → giao diện Trung Thu
+ *   'quoc_khanh'→ giao diện Quốc Khánh 2/9
  *   'tu_dong'   → tự đổi theo lịch bên dưới, hết mùa tự về nguyên bản
  *
  * Có thể đè bằng wp-config.php:
